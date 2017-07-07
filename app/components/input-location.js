@@ -5,6 +5,7 @@ export default Ember.Component.extend({
     label: '',
     name: '',
     value: '',
+    locationId: '',
     required: false,
     productType: '',
     cities: '',
@@ -24,8 +25,11 @@ export default Ember.Component.extend({
                 });
             });
         },
-        clickedCity(description) {
+        clickedCity(description, id) {
             this.set('value', description);
+            this.set('locationId', id)
+
+            // reseta as opções
             this.set('cities', []);
         }
     }

@@ -11,7 +11,7 @@
 {{#if cities}}
     <ul>
         {{#each cities as |city|}}
-            <li {{action "clickedCity" city.description}}>{{city.description}}</li>
+            <li {{action "clickedCity" city.description city._id}}>{{city.description}}</li>
         {{/each}}
     </ul>
 {{/if}}
