@@ -1,11 +1,29 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
-            {{input-location label="Partida" name="partida" required="true" productType="AIR"}}
+            {{input-location label="Partida" name="partida" required="true" productType="air"}}
         </div>
 
         <div class="col-sm-6">
-            {{input-location label="Destino" name="destino" required="true" productType="AIR"}}
+            {{input-location label="Destino" name="destino" required="true" productType="air"}}
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label>Data de partida:</label>
+
+                {{bootstrap-datepicker value=leaveDate class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate="model.todayDate"}}
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label>Data de retorno:</label>
+
+                {{bootstrap-datepicker class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate=leaveDate}}
+            </div>
         </div>
     </div>
 

@@ -9,5 +9,9 @@
 </div>
 
 {{#if cities}}
-    Carregou
+    <ul>
+        {{#each cities as |city|}}
+            <li {{action "clickedCity" city.description}}>{{city.description}}</li>
+        {{/each}}
+    </ul>
 {{/if}}

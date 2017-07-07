@@ -14,10 +14,19 @@ export default Ember.Component.extend({
     },
     actions: {
         searchCities() {
-            this.get('store').query('location', {q: encodeURI(this.get('value')), productType: this.get('productType')})
-            .then(function(cities) {
-                this.set('cities', cities);
+            var self = this;
+
+            this.get('store').query('location', {q: encodeURI(this.get('value')), productType: this.get('productType')}).then(function(cities) {
+                self.set('cities', []);
+
+                cities.toArray().map(function(city) {
+                    self.get('cities').pushObject(city.toJSON());
+                });
             });
+        },
+        clickedCity(description) {
+            this.set('value', description);
+            this.set('cities', []);
         }
     }
 });
