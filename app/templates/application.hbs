@@ -1,33 +1,319 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-6">
-            {{input-location label="Partida" name="partida" required="true" productType="air"}}
-        </div>
+        <div class="col-xs-12">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#pacotes" aria-controls="pacotes" role="tab" data-toggle="tab">Pacotes</a>
+                </li>
 
-        <div class="col-sm-6">
-            {{input-location label="Destino" name="destino" required="true" productType="air"}}
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group">
-                <label>Data de partida:</label>
+                <li role="presentation">
+                    <a href="#passagens" aria-controls="passagens" role="tab" data-toggle="tab">Passagens Aéreas</a>
+                </li>
 
-                {{bootstrap-datepicker value=leaveDate class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate="model.todayDate"}}
+                <li role="presentation">
+                    <a href="#carros" aria-controls="carros" role="tab" data-toggle="tab">Carros</a>
+                </li>
+
+                <li role="presentation">
+                    <a href="#hoteis" aria-controls="hoteis" role="tab" data-toggle="tab">Hoteis</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="pacotes">
+                    <form>
+                        <div style="margin-bottom: 35px"></div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{input-location label="Origem" name="fromCityCode" required="true" productType="AIR"}}
+                            </div>
+
+                            <div class="col-sm-6">
+                                {{input-location label="Destino" name="toCityCode" required="true" productType="AIR"}}
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Entrada:</label>
+
+                                    {{bootstrap-datepicker name="leaveDate" value=leaveDate class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate="model.todayDate"}}
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Saída:</label>
+
+                                    {{bootstrap-datepicker name="returnDate" class="form-control" format="dd/mm/yyyy" language="pt-BR" startDate=leaveDate}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                {{select-rooms name="rooms"}}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="directTrip" value="true" type="checkbox"> Somente voos diretos
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <input type="submit" class="btn btn-success" value="Buscar">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="passagens">
+                    <form>
+                        <div style="margin-bottom: 35px"></div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {{input-location label="Origem" name="fromCityCode" required="true" productType="AIR"}}
+                            </div>
+
+                            <div class="col-sm-6">
+                                {{input-location label="Destino" name="toCityCode" required="true" productType="AIR"}}
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Entrada:</label>
+
+                                    {{bootstrap-datepicker name="leaveDate" value=leaveDate class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate="model.todayDate"}}
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Saída:</label>
+
+                                    {{bootstrap-datepicker name="returnDate" class="form-control" format="dd/mm/yyyy" language="pt-BR" startDate=leaveDate}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Adultos: </label>
+
+                                    <select name="ADT" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Crianças: </label>
+
+                                    <select name="CHD" class="form-control">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Bebês: </label>
+
+                                    <select name="INF" class="form-control">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="oneTrip" value="true" type="checkbox"> Somente ida
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="directTrip" value="true" type="checkbox"> Somente voos diretos
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <input type="submit" class="btn btn-success" value="Buscar">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="carros">
+                    <form>
+                        <div style="margin-bottom: 15px"></div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="returnOtherPlace" value="true"> Devolver em outro local
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 15px"></div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {{input-location label="Local de retirada" name="pickUpLocationCode" required="true" productType="CAR"}}
+                            </div>                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {{input-location label="Local de devolução" name="returnLocationCode" required="true" productType="CAR"}}
+                            </div>                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Início</label>
+
+                                    {{bootstrap-datepicker name="pickUpDate" value=pickUpDate class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate="model.todayDate"}}
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Término</label>
+
+                                    {{bootstrap-datepicker name="returnDate" class="form-control" format="dd/mm/yyyy" language="pt-BR" startDate=pickUpDate}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Horário de retirada</label>
+
+                                    <input type="text" class="form-control" name="pickUpHour" placeholder="00:00" max-lenght="5">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Horário de devolução</label>
+
+                                    <input type="text" class="form-control" name="returnDate" placeholder="00:00" max-lenght="5">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <input type="submit" class="btn btn-success" value="Buscar">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="hoteis">
+                    <form>
+                        <div style="margin-bottom: 35px"></div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                {{input-location label="Destino" name="cityCode" required="true" productType="HOT"}}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Entrada</label>
+
+                                    {{bootstrap-datepicker name="checkIn" value=checkIn class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate="model.todayDate"}}
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Saída</label>
+
+                                    {{bootstrap-datepicker name="checkOut" class="form-control" format="dd/mm/yyyy" language="pt-BR" startDate=checkIn}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                {{select-rooms name="rooms"}}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <input type="submit" class="btn btn-success" value="Buscar">
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-
-        <div class="col-sm-6">
-            <div class="form-group">
-                <label>Data de retorno:</label>
-
-                {{bootstrap-datepicker class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate=leaveDate}}
-            </div>
-        </div>
     </div>
-
-    {{select-rooms name="rooms"}}
-
-    {{outlet}}
 </div>

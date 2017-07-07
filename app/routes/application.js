@@ -28,5 +28,10 @@ export default Ember.Route.extend({
         return {
             todayDate: this.get('getTodayDate')()
         };
+    },
+    actions: {
+        changedDirectTrip(value) {
+            console.log(value);
+        }
     }
 });
