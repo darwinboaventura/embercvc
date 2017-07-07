@@ -21,16 +21,16 @@
 
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="pacotes">
-                    <form>
+                    {{#tab-form url="http://www.cvc.com.br/monte-sua-viagem/resultados" getUrlAdress=(action "getUrlAddress") submitForm=(action "submitForm")}}
                         <div style="margin-bottom: 35px"></div>
 
                         <div class="row">
                             <div class="col-sm-6">
-                                {{input-location label="Origem" name="fromCityCode" required="true" productType="AIR"}}
+                                {{input-location label="Origem" name="fromCityCode" required="true" productType="AIR" onSelectCity=(action "getValueLocation")}}
                             </div>
 
                             <div class="col-sm-6">
-                                {{input-location label="Destino" name="toCityCode" required="true" productType="AIR"}}
+                                {{input-location label="Destino" name="toCityCode" required="true" productType="AIR" value=properties.toCityCode onSelectCity=(action "getValueLocation")}}
                             </div>
                         </div>
                         
@@ -39,7 +39,7 @@
                                 <div class="form-group">
                                     <label>Entrada:</label>
 
-                                    {{bootstrap-datepicker name="leaveDate" value=leaveDate class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate="model.todayDate"}}
+                                    {{bootstrap-datepicker name="leaveDate" value=leaveDate class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate="model.todayDate" changeDate=(action "dateChanged" "leaveDate")}}
                                 </div>
                             </div>
 
@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     <label>Saída:</label>
 
-                                    {{bootstrap-datepicker name="returnDate" class="form-control" format="dd/mm/yyyy" language="pt-BR" startDate=leaveDate}}
+                                    {{bootstrap-datepicker name="returnDate" value=returnDate class="form-control" format="dd/mm/yyyy" language="pt-BR" startDate=leaveDate changeDate=(action "dateChanged" "returnDate")}}
                                 </div>
                             </div>
                         </div>
@@ -69,17 +69,11 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <input type="submit" class="btn btn-success" value="Buscar">
-                            </div>
-                        </div>
-                    </form>
+                    {{/tab-form}}
                 </div>
 
                 <div role="tabpanel" class="tab-pane" id="passagens">
-                    <form>
+                    {{#tab-form url="http://www.cvc.com.br/passagens-aereas/resultados"}}
                         <div style="margin-bottom: 35px"></div>
 
                         <div class="row">
@@ -189,17 +183,11 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <input type="submit" class="btn btn-success" value="Buscar">
-                            </div>
-                        </div>
-                    </form>
+                    {{/tab-form}}
                 </div>
 
                 <div role="tabpanel" class="tab-pane" id="carros">
-                    <form>
+                    {{#tab-form url="http://www.cvc.com.br/carros/resultados"}}
                         <div style="margin-bottom: 15px"></div>
 
                         <div class="row">
@@ -263,17 +251,11 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <input type="submit" class="btn btn-success" value="Buscar">
-                            </div>
-                        </div>
-                    </form>
+                    {{/tab-form}}
                 </div>
 
                 <div role="tabpanel" class="tab-pane" id="hoteis">
-                    <form>
+                    {{#tab-form url="http://www.cvc.com.br/hoteis/resultados"}}
                         <div style="margin-bottom: 35px"></div>
 
                         <div class="row">
@@ -305,13 +287,7 @@
                                 {{select-rooms name="rooms"}}
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <input type="submit" class="btn btn-success" value="Buscar">
-                            </div>
-                        </div>
-                    </form>
+                    {{/tab-form}}
                 </div>
             </div>
         </div>

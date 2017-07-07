@@ -29,6 +29,12 @@ export default Ember.Component.extend({
             this.set('value', description);
             this.set('locationId', id)
 
+            // passa valores para o parent component
+            let name = this.get('name');
+            let locationId = this.get('locationId');
+
+            this.get('onSelectCity')(name, locationId);
+
             // reseta as opções
             this.set('cities', []);
         }
