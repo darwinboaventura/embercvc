@@ -1,5 +1,15 @@
-{{input-location name="destino" required="true" productType="AIR"}}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            {{input-location label="Partida" name="partida" required="true" productType="AIR"}}
+        </div>
 
-{{select-rooms name="rooms"}}
+        <div class="col-sm-6">
+            {{input-location label="Destino" name="destino" required="true" productType="AIR"}}
+        </div>
+    </div>
 
-{{outlet}}
+    {{select-rooms name="rooms"}}
+
+    {{outlet}}
+</div>

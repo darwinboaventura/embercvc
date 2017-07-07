@@ -1,40 +1,104 @@
-<label>Quartos</label>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>Quartos</label>
 
-<select name={{name}} onchange={{action "changeQuantityRooms" value="target.value"}}>
-    <option value="1">1</option>
-    <option value="2">2</option>
-</select>
+            <select name={{name}} onchange={{action "changeQuantityRooms" value="target.value"}} class="form-control">
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </div>
+    </div>
 
-<hr />
+    <div class="col-sm-6">
+        {{#if rooms}}
+            {{#each rooms as |room index|}}
+                <div class="row">
+                    <div class="col-sm-2">
+                        <p class="text-center" style="margin-top: 25px">
+                            <i>Quarto {{index}}</i>
+                        </p>
+                    </div>
 
-<div class="container-people">
-    <label>Adultos | +18</label>
+                    <div class="col-sm-10">
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label>
+                                    Adultos <small>+18</small>
+                                </label>
 
-    <select name={{concat name "1-adult"}}>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-    </select>
+                                <select name={{concat name index "-adults"}} class="form-control">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                </select>
+                            </div>
 
-    <label>Crianças | até 17 anos</label>
+                            <div class="col-sm-6 form-group">
+                                <label>
+                                    Crianças <small>até 17 anos</small>
+                                </label>
 
-    <select name={{concat name "1-children"}} onchange={{action "changeQuantityChildren" value="target.value"}}>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-    </select>
+                                <select name={{concat name index "-children"}} onchange={{action "changeQuantityChildren" value="target"}} class="form-control">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                </select>
+                            </div>
 
-    <div class="container-children"></div>
+                            <div class="col-xs-12">
+                                {{#if (get this (concat "quantity" name index "-children"))}}
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <label>Idade das crianças: </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        {{#each (get this (concat name index "-children")) as | child i |}}
+                                            <div class="col-sm-4 form-group">                                        
+                                                <select name={{concat name index "-children-age-" i}} class="form-control">
+                                                    <option value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                    <option value="13">13</option>
+                                                    <option value="14">14</option>
+                                                    <option value="15">15</option>
+                                                    <option value="16">16</option>
+                                                    <option value="17">17</option>
+                                                </select>                                    
+                                            </div>
+                                        {{/each}}
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        {{/if}}
+    </div>
 </div>

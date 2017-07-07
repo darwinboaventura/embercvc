@@ -1,4 +1,12 @@
-{{input type="search" name=name value=value required=required productType=productType key-up="searchCities"}}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="form-group">
+            <label>{{label}}</label>
+
+            {{input type="search" name=name value=value required=required productType=productType key-up="searchCities" class="form-control"}}
+        </div>
+    </div>
+</div>
 
 {{#if cities}}
     Carregou
