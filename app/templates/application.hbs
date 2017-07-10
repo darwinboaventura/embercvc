@@ -42,7 +42,8 @@
                                     {{bootstrap-datepicker name="leaveDate" value=leaveDate class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate="model.todayDate" changeDate=(action "dateChanged" "leaveDate")}}
                                 </div>
                             </div>
-
+                            
+                            {{#unless properties.oneTrip}}
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Saída:</label>
@@ -50,6 +51,7 @@
                                     {{bootstrap-datepicker name="returnDate" value=returnDate class="form-control" format="dd/mm/yyyy" language="pt-BR" startDate=leaveDate changeDate=(action "dateChanged" "returnDate")}}
                                 </div>
                             </div>
+                            {{/unless}}
                         </div>
 
                         <div class="row">
@@ -63,7 +65,7 @@
                                 <div class="form-group">
                                     <div class="checkbox">
                                         <label>
-                                            <input name="oneTrip" value="true" type="checkbox"> Somente ida
+                                            <input name="oneTrip" value={{oneTrip}} onchange={{action "changedCheckbox"}} type="checkbox"> Somente ida
                                         </label>
                                     </div>
                                 </div>
@@ -73,7 +75,7 @@
                                 <div class="form-group">
                                     <div class="checkbox">
                                         <label>
-                                            <input name="directTrip" value="true" type="checkbox"> Somente voos diretos
+                                            <input name="directTrip" value={{directTrip}} onchange={{action "changedCheckbox"}} value="true" type="checkbox"> Somente voos diretos
                                         </label>
                                     </div>
                                 </div>
@@ -83,16 +85,16 @@
                 </div>
 
                 <div role="tabpanel" class="tab-pane" id="passagens">
-                    {{#tab-form url="http://www.cvc.com.br/passagens-aereas/resultados"}}
+                    {{#tab-form url="http://www.cvc.com.br/passagens-aereas/resultados" getUrlAdress=(action "getUrlAddress") submitForm=(action "submitForm")}}
                         <div style="margin-bottom: 35px"></div>
 
                         <div class="row">
                             <div class="col-sm-6">
-                                {{input-location label="Origem" name="fromCityCode" required="true" productType="AIR"}}
+                                {{input-location label="Origem" name="fromCityCode" onSelectCity=(action "getValueLocation") required="true" productType="AIR"}}
                             </div>
 
                             <div class="col-sm-6">
-                                {{input-location label="Destino" name="toCityCode" required="true" productType="AIR"}}
+                                {{input-location label="Destino" name="toCityCode" onSelectCity=(action "getValueLocation") required="true" productType="AIR"}}
                             </div>
                         </div>
                         
@@ -101,17 +103,19 @@
                                 <div class="form-group">
                                     <label>Entrada:</label>
 
-                                    {{bootstrap-datepicker name="leaveDate" value=leaveDate class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate="model.todayDate"}}
+                                    {{bootstrap-datepicker name="leaveDate" value=leaveDate class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate="model.todayDate" changeDate=(action "dateChanged" "leaveDate")}}
                                 </div>
                             </div>
-
+                            
+                            {{#unless properties.oneTrip}}
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Saída:</label>
 
-                                    {{bootstrap-datepicker name="returnDate" class="form-control" format="dd/mm/yyyy" language="pt-BR" startDate=leaveDate}}
+                                    {{bootstrap-datepicker name="returnDate" value=returnDate class="form-control" format="dd/mm/yyyy" language="pt-BR" startDate=leaveDate changeDate=(action "dateChanged" "returnDate")}}
                                 </div>
                             </div>
+                            {{/unless}}
                         </div>
 
                         <div class="row">
@@ -119,7 +123,8 @@
                                 <div class="form-group">
                                     <label>Adultos: </label>
 
-                                    <select name="ADT" class="form-control">
+                                    <select name="ADT" onchange={{action "changedField"}} class="form-control">
+                                        <option value="">Selecione</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -137,7 +142,7 @@
                                 <div class="form-group">
                                     <label>Crianças: </label>
 
-                                    <select name="CHD" class="form-control">
+                                    <select name="CHD" onchange={{action "changedField"}} class="form-control">
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -156,7 +161,7 @@
                                 <div class="form-group">
                                     <label>Bebês: </label>
 
-                                    <select name="INF" class="form-control">
+                                    <select name="INF" onchange={{action "changedField"}} class="form-control">
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -177,7 +182,7 @@
                                 <div class="form-group">
                                     <div class="checkbox">
                                         <label>
-                                            <input name="oneTrip" value="true" type="checkbox"> Somente ida
+                                            <input name="oneTrip" value={{oneTrip}} onchange={{action "changedCheckbox"}} type="checkbox"> Somente ida
                                         </label>
                                     </div>
                                 </div>
@@ -187,7 +192,7 @@
                                 <div class="form-group">
                                     <div class="checkbox">
                                         <label>
-                                            <input name="directTrip" value="true" type="checkbox"> Somente voos diretos
+                                            <input name="directTrip" value={{directTrip}} onchange={{action "changedCheckbox"}} value="true" type="checkbox"> Somente voos diretos
                                         </label>
                                     </div>
                                 </div>
@@ -197,7 +202,7 @@
                 </div>
 
                 <div role="tabpanel" class="tab-pane" id="carros">
-                    {{#tab-form url="http://www.cvc.com.br/carros/resultados"}}
+                    {{#tab-form url="http://www.cvc.com.br/carros/resultados" getUrlAdress=(action "getUrlAddress") submitForm=(action "submitForm")}}
                         <div style="margin-bottom: 15px"></div>
 
                         <div class="row">
@@ -205,7 +210,7 @@
                                 <div class="form-group">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="returnOtherPlace" value="true"> Devolver em outro local
+                                            <input type="checkbox" name="returnOtherPlace" onchange={{action "changedCheckbox"}}> Devolver em outro local
                                         </label>
                                     </div>
                                 </div>
@@ -216,22 +221,24 @@
 
                         <div class="row">
                             <div class="col-sm-12">
-                                {{input-location label="Local de retirada" name="pickUpLocationCode" required="true" productType="CAR"}}
+                                {{input-location label="Local de retirada" name="pickUpLocationCode" required="true" productType="CAR" onSelectCity=(action "getValueLocation")}}
                             </div>                            
                         </div>
-
+                        
+                        {{#if properties.returnOtherPlace}}
                         <div class="row">
                             <div class="col-sm-12">
-                                {{input-location label="Local de devolução" name="returnLocationCode" required="true" productType="CAR"}}
+                                {{input-location label="Local de devolução" name="returnLocationCode" required="true" productType="CAR" onSelectCity=(action "getValueLocation")}}
                             </div>                            
                         </div>
+                        {{/if}}
 
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Início</label>
 
-                                    {{bootstrap-datepicker name="pickUpDate" value=pickUpDate class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate="model.todayDate"}}
+                                    {{bootstrap-datepicker name="pickUpDate" value=pickUpDate class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate="model.todayDate" changeDate=(action "dateChanged" "pickUpDate")}}
                                 </div>
                             </div>
 
@@ -239,7 +246,7 @@
                                 <div class="form-group">
                                     <label>Término</label>
 
-                                    {{bootstrap-datepicker name="returnDate" class="form-control" format="dd/mm/yyyy" language="pt-BR" startDate=pickUpDate}}
+                                    {{bootstrap-datepicker name="returnDate" class="form-control" format="dd/mm/yyyy" language="pt-BR" startDate=pickUpDate changeDate=(action "dateChanged" "returnDate")}}
                                 </div>
                             </div>
                         </div>
@@ -249,7 +256,7 @@
                                 <div class="form-group">
                                     <label>Horário de retirada</label>
 
-                                    <input type="text" class="form-control" name="pickUpHour" placeholder="00:00" max-lenght="5">
+                                    <input type="text" class="form-control" name="pickUpHour" onchange={{action "changedField"}} placeholder="00:00" max-lenght="5">
                                 </div>
                             </div>
 
@@ -257,7 +264,7 @@
                                 <div class="form-group">
                                     <label>Horário de devolução</label>
 
-                                    <input type="text" class="form-control" name="returnDate" placeholder="00:00" max-lenght="5">
+                                    <input type="text" class="form-control" name="returnHour" onchange={{action "changedField"}} placeholder="00:00" max-lenght="5">
                                 </div>
                             </div>
                         </div>
@@ -265,12 +272,12 @@
                 </div>
 
                 <div role="tabpanel" class="tab-pane" id="hoteis">
-                    {{#tab-form url="http://www.cvc.com.br/hoteis/resultados"}}
+                    {{#tab-form url="http://www.cvc.com.br/hoteis/resultados" getUrlAdress=(action "getUrlAddress") submitForm=(action "submitForm")}}
                         <div style="margin-bottom: 35px"></div>
 
                         <div class="row">
                             <div class="col-xs-12">
-                                {{input-location label="Destino" name="cityCode" required="true" productType="HOT"}}
+                                {{input-location label="Destino" name="cityCode" required="true" productType="HOT" onSelectCity=(action "getValueLocation")}}
                             </div>
                         </div>
 
@@ -279,7 +286,7 @@
                                 <div class="form-group">
                                     <label>Entrada</label>
 
-                                    {{bootstrap-datepicker name="checkIn" value=checkIn class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate="model.todayDate"}}
+                                    {{bootstrap-datepicker name="checkIn" value=checkIn class="form-control" format="dd/mm/yyyy" language="pt-BR" todayHighlight="true" startDate="model.todayDate" changeDate=(action "dateChanged" "checkIn")}}
                                 </div>
                             </div>
 
@@ -287,14 +294,14 @@
                                 <div class="form-group">
                                     <label>Saída</label>
 
-                                    {{bootstrap-datepicker name="checkOut" class="form-control" format="dd/mm/yyyy" language="pt-BR" startDate=checkIn}}
+                                    {{bootstrap-datepicker name="checkOut" class="form-control" format="dd/mm/yyyy" language="pt-BR" changeDate=(action "dateChanged" "checkOut") startDate=checkIn}}
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-xs-12">
-                                {{select-rooms name="rooms"}}
+                                {{select-rooms name="rooms" onChangeRooms=(action "getValuesRoom")}}
                             </div>
                         </div>
                     {{/tab-form}}

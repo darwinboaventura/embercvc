@@ -18,8 +18,27 @@ export default Ember.Controller.extend({
         getValuesRoom(name, rooms) {
             this.set('properties.' + name, rooms);
         },
+        changedCheckbox(event) {
+            var value = event.target.checked;
+            var name = event.target.name;
+
+            this.set('properties.' + name, value);
+        },
+        changedField(event) {
+            this.set('properties.' + event.target.name, event.target.value);
+        },
         submitForm() {
-            console.log(this.get('properties'));
+            var properties = this.get('properties');
+            var url = properties.url;
+            var params = '';
+
+            for (var field in properties) {
+                if (field !== 'url') {
+                    params += field + "=" + encodeURI(properties[field]) + "&";
+                } 
+            }
+
+            console.log(url + "?" + params);
         }
     }
 });
