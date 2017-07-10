@@ -27,7 +27,8 @@
                                     Adultos <small>+18</small>
                                 </label>
 
-                                <select name={{concat name index "-adults"}} class="form-control">
+                                <select name={{concat name index "-adults"}} data-index={{index}} onchange={{action "addAdult"}} class="form-control">
+                                    <option value="">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -70,7 +71,7 @@
                                     <div class="row">
                                         {{#each (get this (concat name index "-children")) as | child i |}}
                                             <div class="col-sm-4 form-group">                                        
-                                                <select name={{concat name index "-children-age-" i}} class="form-control">
+                                                <select name={{concat name index "-children-age-" i}}  data-index={{index}} data-sindex={{i}} onchange={{action "addChild"}} class="form-control">
                                                     <option value="0">0</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>

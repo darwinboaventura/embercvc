@@ -15,6 +15,9 @@ export default Ember.Controller.extend({
         dateChanged(name, date) {
             this.set('properties.' + name, date);
         },
+        getValuesRoom(name, rooms) {
+            this.set('properties.' + name, rooms);
+        },
         submitForm() {
             console.log(this.get('properties'));
         }

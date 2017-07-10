@@ -54,11 +54,21 @@
 
                         <div class="row">
                             <div class="col-xs-12">
-                                {{select-rooms name="rooms"}}
+                                {{select-rooms name="rooms" onChangeRooms=(action "getValuesRoom")}}
                             </div>
                         </div>
 
                         <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="oneTrip" value="true" type="checkbox"> Somente ida
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <div class="checkbox">
