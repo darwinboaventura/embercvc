@@ -27,6 +27,11 @@ export default Ember.Controller.extend({
         changedField(event) {
             this.set('properties.' + event.target.name, event.target.value);
         },
+        clearFields() {
+            this.set('properties', {});
+            this.set('leaveDate', '');
+            this.set('returnDate', '');
+        },
         submitForm() {
             var properties = this.get('properties');
             var url = properties.url;
