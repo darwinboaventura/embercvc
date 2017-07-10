@@ -34,7 +34,7 @@ export default Ember.Component.extend({
 
             for (var i = 0; i < this.get('quantityRooms'); i++) {
                 this.get('rooms').pushObject(i);
-            };
+            }
         },
         changeQuantityChildren(value) {
             this.set("quantity" + value.name, value.value);
